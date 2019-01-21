@@ -1,0 +1,103 @@
+
+<html>
+<head>
+<style>
+	.show_images
+	{
+		text-align : center;
+		display : block;
+	}
+	.container
+	{
+		text-align : center;
+		padding :4px;
+	}
+	.show_text
+	{
+		display : block;
+		text-align : center;
+		font-weight : bold;
+		font-size : 20px;
+	}
+</style>
+
+
+<script>
+	var images = ["images/yellow_field_by_vincent_van_gogh.jpg",
+                             "images/night_watch_by_rembrandt.jpg",
+                             "images/persistence_of_memory_by_dali.jpg",
+                             "images/demoiselles_de_avignon_by_picasso.jpg",
+							 "images/Terminator_2_Front.jpg",
+                             "images/mona_lisa_by_leonardo.jpg" ];
+	var text = ["picture1","picture2","picture3","picture4","picture5","picture6"];
+	var picture_index = 0;
+	function next_picture()
+	{
+		picture_index ++;
+		if (picture_index >= images.length)
+		{
+			picture_index = 0;
+		}
+	    var element_picture = document.querySelector("#image_element_id");
+		element_picture.src = images[picture_index]; 
+		var element_text = document.querySelector(".show_text");
+		element_text.innerHTML = text[picture_index];
+	}
+	
+	function previous_picture()
+	{
+		picture_index --;
+		if (picture_index <= 0)
+		{
+			picture_index = images.length -1;
+		}
+		var picture_element = document.querySelector("#image_element_id");
+		picture_element.src = images[picture_index];
+		var element_text = document.querySelector(".show_text");
+		element_text.innerHTML = text[picture_index];
+	}
+	
+	function enlarge()
+	{
+		var element_picture   = document.querySelector("#image_element_id");
+		if (element_picture.width > 1000)
+		{	
+			alert("Maximum size");
+		}
+		else
+		{
+			element_picture.width = element_picture.width + 30;
+		}
+	}
+	
+	
+	function shrink()
+	{
+		var element_picture   = document.querySelector("#image_element_id");
+		if (element_picture.width < 400)
+		{	
+			alert("Minimum size");
+		}
+		else
+		{
+			element_picture.width = element_picture.width - 30;
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<button onclick="next_picture()">NEXT</button>
+		<button onclick="previous_picture()">PREVIOUS</button>
+		<button onclick="enlarge()">ZOOM ++</button>
+		<button onclick="shrink()">ZOOM --</button>
+	</div>
+	<div class="show_images">
+		<img id=image_element_id
+          src="images/yellow_field_by_vincent_van_gogh.jpg" width=800 onclick="next_picture()">
+	</div>
+	<div class="show_text"><p>picture1</p>
+	</div>
+</body>
+</html>
